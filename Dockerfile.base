@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     wget \
     golang-go \
-    sudo \
     && rm -rf /var/lib/apt/lists/*
 
 # Install GitHub CLI
@@ -42,9 +41,8 @@ COPY github-mcp-server-linux /usr/local/bin/github-mcp-server
 # --------------------
 # User Setup
 # --------------------
-# vscodeユーザーを作成し、sudo権限を付与する
-RUN useradd -ms /bin/bash -G sudo vscode
-RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/vscode
+# vscodeユーザーを作成する（sudo権限は付与しない）
+RUN useradd -ms /bin/bash vscode
 
 # ユーザーをvscodeに切り替え
 USER vscode

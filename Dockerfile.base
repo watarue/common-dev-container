@@ -43,7 +43,7 @@ COPY github-mcp-server-linux /usr/local/bin/github-mcp-server
 # --------------------
 # vscodeユーザーを作成し、sudo権限を付与する
 RUN useradd -ms /bin/bash -G sudo vscode
-RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/vscode
+RUN echo "vscode ALL=(ALL) NOPASSWD:ALL" | tee /etc/sudoers.d/vscode
 
 # ユーザーをvscodeに切り替え
 USER vscode
